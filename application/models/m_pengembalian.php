@@ -29,9 +29,7 @@ class M_Pengembalian extends CI_Model{
     }
     
     function cari_by_nia($nia){
-        $query=$this->db->query("select * from transaksi where id_transaksi
-                                not in(select id_transaksi from pengembalian)
-                                and nia like'%$nia%' group by nia");
+        $query=$this->db->query("SELECT a.`id_transaksi`, a.`nia`, a.`tanggal_pinjam` FROM `transaksi` AS a LEFT JOIN `pengembalian` AS b ON a.`id_transaksi` = b.`id_transaksi` LEFT JOIN `anggota` AS c ON a.`nia`=c.`nia` WHERE c.`nama` LIKE'%$nia%' AND b.`id_transaksi` IS NULL GROUP BY a.`nia`");
         return $query;
     }
 }

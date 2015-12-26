@@ -56,9 +56,9 @@ class Pengembalian extends CI_Controller{
         $this->m_pengembalian->simpan($info);
     }
     
-    function cari_by_nis(){
-        $nis=$this->input->post('nis');
-        $data['pencarian']=$this->m_pengembalian->cari_by_nis($nis)->result();
+    function cari_by_nia(){
+        $nia=$this->input->post('nia');
+        $data['pencarian']=$this->m_pengembalian->cari_by_nia($nia)->result();
         $this->load->view('pengembalian/pencarian',$data);
     }
     

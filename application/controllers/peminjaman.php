@@ -58,6 +58,7 @@ class Peminjaman extends CI_Controller{
     function cariBuku(){
         $kode=$this->input->post('kode');
         $buku=$this->m_peminjaman->cariBuku($kode);
+		print_r($buku);
         if($buku->num_rows()>0){
             $buku=$buku->row_array();
             echo $buku['judul']."|".$buku['pengarang'];

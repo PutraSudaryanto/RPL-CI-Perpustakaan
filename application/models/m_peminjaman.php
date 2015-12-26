@@ -27,8 +27,8 @@ class M_Peminjaman extends CI_Model{
     }
     
     function cariBuku($kode){
-        $this->db->where("kode_buku",$kode);
-        return $this->db->get("buku");
+        $this->db->where("buku",$kode);
+        return $this->db->get("view_buku");
     }
     
     function simpanTmp($info){
@@ -58,8 +58,8 @@ class M_Peminjaman extends CI_Model{
     }
     
     function pencarianbuku($cari){
-        $this->db->like("judul",$cari);
-        return $this->db->get("buku");
+        $this->db->like("judul", $cari);
+        return $this->db->get("view_buku");
     }
     
 }

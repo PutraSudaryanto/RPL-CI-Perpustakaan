@@ -27,7 +27,7 @@
     <tr>
         <td><?php echo $no;?></td>
         <td><img src="<?php echo base_url('assets/img/'.$row->image);?>" height="100px" width="100px"></td>
-        <td><?php echo $row->kode_buku;?></td>
+        <td><?php echo $row->buku;?></td>
         <td><?php echo $row->judul;?></td>
 		<td><?php echo $row->penerbit;?></td>
         <td><?php echo $row->nama_pengarang;?></td>

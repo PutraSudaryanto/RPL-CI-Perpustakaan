@@ -9,12 +9,12 @@
         </thead>
         <?php foreach($buku as $tmp):?>
         <tr>
-            <td><?php echo $tmp->kode_buku;?></td>
+            <td><?php echo $tmp->buku;?></td>
             <td><?php echo $tmp->judul;?></td>
-            <td><?php echo $tmp->pengarang;?></td>
-            <td><a href="#" class="tambah" kode="<?php echo $tmp->kode_buku;?>"
+            <td><?php echo $tmp->nama_pengarang;?></td>
+            <td><a href="#" class="tambah" kode="<?php echo $tmp->buku;?>"
             judul="<?php echo $tmp->judul;?>"
-            pengarang="<?php echo $tmp->pengarang;?>"><i class="glyphicon glyphicon-plus"></i></a></td>
+            pengarang="<?php echo $tmp->nama_pengarang;?>"><i class="glyphicon glyphicon-plus"></i></a></td>
         </tr>
         <?php endforeach;?>
     </table>
