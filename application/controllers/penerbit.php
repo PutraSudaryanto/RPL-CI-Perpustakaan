@@ -43,7 +43,6 @@ class Penerbit extends CI_Controller{
         $data['title']="Edit Data penerbit";
         $this->_set_rules();
         if($this->form_validation->run()==true){
-            $id_penerbit=$this->input->post('id_penerbit');
             $info=array(
                 'id_penerbit'=>$this->input->post('id_penerbit'),
                     'penerbit'=>$this->input->post('penerbit'),
@@ -51,7 +50,7 @@ class Penerbit extends CI_Controller{
                     'keterangan'=>$this->input->post('keterangan'),
             );
             //update data angggota
-            $this->m_penerbit->update($id_penerbit,$info);
+            $this->m_penerbit->update($id,$info);
             
             //tampilkan pesan
             $data['message']="<div class='alert alert-success'>Data Berhasil diupdate</div>";
@@ -71,15 +70,12 @@ class Penerbit extends CI_Controller{
         $data['title']="Tambah Data penerbit";
         $this->_set_rules();	
         if($this->form_validation->run()==true){
-            $id_penerbit=$this->input->post('id_penerbit');
-            $cek=$this->m_penerbit->cek($id_penerbit);
-		//$data['list_keterangan'] = $list_keterangan;
+			//$data['list_keterangan'] = $list_keterangan;
             if($cek->num_rows()>0){
                 $data['message']="<div class='alert alert-warning'>id_penerbit sudah digunakan</div>";
                 $this->template->display('penerbit/tambah',$data);
             }else{
                 $info=array(
-                    'id_penerbit'=>$this->input->post('id_penerbit'),
                     'penerbit'=>$this->input->post('penerbit'),
 					'alamat_penerbit'=>$this->input->post('alamat_penerbit'),
                     'keterangan'=>$this->input->post('keterangan'),
@@ -119,7 +115,6 @@ class Penerbit extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('id_penerbit','id_penerbit','required|max_length[10]');
         $this->form_validation->set_rules('penerbit','penerbit','required|max_length[50]');
 		$this->form_validation->set_rules('alamat_penerbit','alamat_penerbit','required|max_length[60]');
         //$this->form_validation->set_rules('keterangan','keterangan','required|max_length[50]');

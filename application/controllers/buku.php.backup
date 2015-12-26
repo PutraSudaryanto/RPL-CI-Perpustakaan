@@ -1,0 +1,41 @@
+
+            $kode=$this->input->get('kode');
+			
+            
+           //setting konfiguras upload image
+					$config['upload_path'] = './assets/img/';
+					$config['allowed_types'] = 'gif|jpg|png';
+					$config['max_size']	= '1000';
+					$config['max_width']  = '2000';
+					$config['max_height']  = '1024';
+					
+					$this->load->library('upload');
+					$this->upload->initialize($config);
+					
+					if(!$this->upload->do_upload('gambar')){
+						$gambar="";
+					}else{
+						//$gambar=$this->upload->file_name;
+						$data = $this->upload->data();
+						
+						$gambar = $data['file_name'];
+					}
+					
+					$gambar = $_POST['Model'];
+					//$info['image'] = $gambar;
+            
+            $info=array(
+                'judul'=> $this->input->post('judul'),
+                'id_pengarang'=> $this->input->post('id_pengarang'),
+				'id_penerbit'=> $this->input->post('id_penerbit'),
+                'id_klasifikasi'=> $this->input->post('id_klasifikasi'),
+                
+            );
+			print_r($info);
+			exit();
+            $this->m_buku->update($id, $info);
+			
+
+			
+		
+            

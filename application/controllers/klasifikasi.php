@@ -43,14 +43,13 @@ class klasifikasi extends CI_Controller{
         $data['title']="Edit Data klasifikasi";
         $this->_set_rules();
         if($this->form_validation->run()==true){
-            $id_klasifikasi=$this->input->post('id_klasifikasi');
             $info=array(
                 'id_klasifikasi'=>$this->input->post('id_klasifikasi'),
 					'jenis_klasifikasi'=>$this->input->post('jenis_klasifikasi'),
                     'keterangan'=>$this->input->post('keterangan'),
             );
             //update data angggota
-            $this->m_klasifikasi->update($id_klasifikasi,$info);
+            $this->m_klasifikasi->update($id,$info);
             
             //tampilkan pesan
             $data['message']="<div class='alert alert-success'>Data Berhasil diupdate</div>";
@@ -70,15 +69,12 @@ class klasifikasi extends CI_Controller{
         $data['title']="Tambah Data klasifikasi";
         $this->_set_rules();	
         if($this->form_validation->run()==true){
-            $id_klasifikasi=$this->input->post('id_klasifikasi');
-            $cek=$this->m_klasifikasi->cek($id_klasifikasi);
-		//$data['list_keterangan'] = $list_keterangan;
+			//$data['list_keterangan'] = $list_keterangan;
             if($cek->num_rows()>0){
                 $data['message']="<div class='alert alert-warning'>id_klasifikasi sudah digunakan</div>";
                 $this->template->display('klasifikasi/tambah',$data);
             }else{
                 $info=array(
-                    'id_klasifikasi'=>$this->input->post('id_klasifikasi'),
 					'jenis_klasifikasi'=>$this->input->post('jenis_klasifikasi'),
                     'keterangan'=>$this->input->post('keterangan'),
                 );
@@ -114,7 +110,6 @@ class klasifikasi extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('id_klasifikasi','id_klasifikasi','required|max_length[10]');
 		$this->form_validation->set_rules('jenis_klasifikasi','jenis_klasifikasi','required|max_length[60]');
         //$this->form_validation->set_rules('keterangan','keterangan','required|max_length[50]');
         $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");

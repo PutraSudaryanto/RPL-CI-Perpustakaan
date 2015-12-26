@@ -1,33 +1,15 @@
 <?php
 class M_buku extends CI_Model{
     private $table="buku";
+    private $viewTable="view_buku";
     private $primary="kode_buku";
     
     function semua($limit=10,$offset=0,$order_column='',$order_type='asc'){
-        if(empty($order_column) || empty($order_type)){
+        if(empty($order_column) || empty($order_type))
             $this->db->order_by($this->primary,'asc');
-			return $this->db->select("{$this->table}.*, dkm.penerbit")
-						->from($this->table)
-						->join("penerbit dkm", "{$this->table}.id_penerbit = dkm.id_penerbit", "left")
-						->limit($this->limit, $offset)
-						->get()
-						->result();}
         else
             $this->db->order_by($order_column,$order_type);
-			
-        return $this->db->get($this->table,$limit,$offset);
-			$this->db->select("{$this->table}.*, dkm.penerbit")
-						->from($this->table)
-						->join("penerbit dkm", "{$this->table}.id_penerbit = dkm.id_penerbit", "left")
-						->limit($this->limit, $offset)
-						->get()
-						->result();
-			$this->db->select("{$this->table}.*, dkm.nama_pengarang")
-						->from($this->table)
-						->join("pengarang dkm", "{$this->table}.id_pengarang = dkm.id_pengarang", "left")
-						->limit($this->limit, $offset)
-						->get()
-						->result();
+        return $this->db->get($this->viewTable,$limit,$offset);
     }
     
     function jumlah(){
@@ -55,8 +37,14 @@ class M_buku extends CI_Model{
     }
     
     function update($kode,$info){
+		if(!empty($info)) {
+			foreach($info as $key => $val)
+				$data[$key] = $val;
+		} else
+			$data = $_POST['Model'];
+		
         $this->db->where($this->primary,$kode);
-        return $this->db->update($this->table,$info);
+        return $this->db->update($this->table,$data);
     }
     
     function hapus($kode){

@@ -31,7 +31,7 @@
         <td><?php echo $row->judul;?></td>
 		<td><?php echo $row->penerbit;?></td>
         <td><?php echo $row->nama_pengarang;?></td>
-        <td><?php echo $row->id_klasifikasi;?></td>
+        <td><?php echo $row->jenis_klasifikasi;?></td>
         <td><a href="<?php echo site_url('buku/edit/'.$row->kode_buku);?>"><i class="glyphicon glyphicon-edit"></i></a></td>
         <td><a href="#" class="hapus" kode="<?php echo $row->kode_buku;?>"><i class="glyphicon glyphicon-trash"></i></a></td>
     </tr>

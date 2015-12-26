@@ -121,43 +121,14 @@ class Buku extends CI_Controller{
 		$data['combo_klasifikasi'] = $this->m_klasifikasi->combo_data(array("-- Pilih klasisfikasi --"));
 		
         if($this->form_validation->run()==true){
-            $kode=$this->input->get('kode');
-			
-            
-           //setting konfiguras upload image
-					$config['upload_path'] = './assets/img/';
-					$config['allowed_types'] = 'gif|jpg|png';
-					$config['max_size']	= '1000';
-					$config['max_width']  = '2000';
-					$config['max_height']  = '1024';
-					
-					$this->load->library('upload');
-					$this->upload->initialize($config);
-					
-					if(!$this->upload->do_upload('gambar')){
-						$gambar="";
-					}else{
-						//$gambar=$this->upload->file_name;
-						$data = $this->upload->data();
-						
-						$gambar = $data['file_name'];
-					}
-					
-					$gambar = $_POST['Model'];
-					//$info['image'] = $gambar;
-            
-            $info=array(
-                'judul'=> $this->input->post('judul'),
-                'id_pengarang'=> $this->input->post('id_pengarang'),
-				'id_penerbit'=> $this->input->post('id_penerbit'),
-                'id_klasifikasi'=> $this->input->post('id_klasifikasi'),
-                
-            );
-            $this->m_buku->update($kode,$info);
-            
-            $data['buku']=$this->m_buku->cek($id)->row_array();
-            $data['message']="<div class='alert alert-success'>Data berhasil diupdate</div>";
-            $this->template->display('buku/edit',$data);
+			if(isset($_POST['Model'])) {
+				//upload missing
+				if($this->m_buku->update($id)) {
+					$data['buku']=$this->m_buku->cek($id)->row_array();
+					$data['message']="<div class='alert alert-success'>Data berhasil diupdate</div>";
+					$this->template->display('buku/edit',$data);		
+				}
+			}
         }else{
             $data['message']="";
             $data['buku']=$this->m_buku->cek($id)->row_array();
@@ -190,7 +161,6 @@ class Buku extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('Model[kode_buku]','Kode Buku','required|max_length[5]');
         $this->form_validation->set_rules('Model[judul]','Judul Buku','required|max_length[100]');
         $this->form_validation->set_rules('Model[id_pengarang]','Pengarang','required|max_length[50]');
 		 $this->form_validation->set_rules('Model[id_penerbit]','Penerbit','required|max_length[50]');

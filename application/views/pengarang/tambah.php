@@ -5,12 +5,6 @@
 
 <form class="form-horizontal" action="<?php echo site_url('pengarang/tambah');?>" method="post" enctype="multipart/form-data"> 
     <div class="form-group">
-        <label class="col-lg-2 control-label">id pengarang</label>
-        <div class="col-lg-5">
-            <input type="text" name="id_pengarang" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
         <label class="col-lg-2 control-label">nama pengarang</label>
         <div class="col-lg-5">
             <input type="text" name="nama_pengarang" class="form-control">

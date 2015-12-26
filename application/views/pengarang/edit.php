@@ -4,12 +4,6 @@
 
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label class="col-lg-2 control-label">Id Pengarang</label>
-        <div class="col-lg-5">
-            <input type="text" name="id_pengarang" class="form-control" value="<?php echo $pengarang['id_pengarang'];?>" readonly="readonly">
-        </div>
-    </div>
-    <div class="form-group">
         <label class="col-lg-2 control-label">Nama Pengarang</label>
         <div class="col-lg-5">
             <input type="text" name="nama_pengarang" class="form-control" value="<?php echo $pengarang['nama_pengarang'];?>">

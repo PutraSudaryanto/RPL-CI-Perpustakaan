@@ -1,12 +1,6 @@
 <legend><?php echo $title;?></legend>
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" />
     <?php echo validation_errors(); echo $message;?>
-    <div class="form-group">
-        <label class="col-lg-2 control-label">Kode Buku</label>
-        <div class="col-lg-5">
-            <input type="text" name='Model[kode_buku]' class="form-control" value="<?php echo $buku['kode_buku'];?>" readonly="readonly">
-        </div>
-    </div>
     
     <div class="form-group">
         <label class="col-lg-2 control-label">Judul Buku</label>
@@ -48,7 +42,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label"></label>
         <div class="col-lg-5">
-            <input type="file" name="gambar" class="form-control">
+            <input type="file" name='gambar' class="form-control">
         </div>
     </div>
     

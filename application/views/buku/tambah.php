@@ -2,12 +2,6 @@
 <legend><?php echo $title;?></legend>
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" />
     <?php echo validation_errors(); echo $message;?>
-    <div class="form-group">
-        <label class="col-lg-2 control-label">Kode Buku</label>
-        <div class="col-lg-5">
-            <input type="text" name='Model[kode_buku]' class="form-control">
-        </div>
-    </div>
     
     <div class="form-group">
         <label class="col-lg-2 control-label">Judul Buku</label>

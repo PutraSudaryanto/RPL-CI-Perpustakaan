@@ -43,9 +43,8 @@ class Pengarang extends CI_Controller{
         $data['title']="Edit Data pengarang";
         $this->_set_rules();
         if($this->form_validation->run()==true){
-            $id_pengarang=$this->input->post('id_pengarang');
-            //setting konfiguras upload image
-            $config['upload_path'] = './assets/img/pengarang/';
+		//setting konfiguras upload image
+		$config['upload_path'] = './assets/img/pengarang/';
 	    $config['allowed_types'] = 'gif|jpg|png';
 	    $config['max_size']	= '1000';
 	    $config['max_width']  = '2000';
@@ -64,7 +63,7 @@ class Pengarang extends CI_Controller{
                 'image'=>$gambar
             );
             //update data angggota
-            $this->m_pengarang->update($id_pengarang,$info);
+            $this->m_pengarang->update($id,$info);
             
             //tampilkan pesan
             $data['message']="<div class='alert alert-success'>Data Berhasil diupdate</div>";
@@ -146,7 +145,6 @@ class Pengarang extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('id_pengarang','id_pengarang','required|max_length[10]');
         $this->form_validation->set_rules('nama_pengarang','nama_pengarang','required|max_length[50]');
         //$this->form_validation->set_rules('keterangan','keterangan','required|max_length[50]');
         $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
