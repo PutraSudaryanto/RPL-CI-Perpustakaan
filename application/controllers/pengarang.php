@@ -83,33 +83,27 @@ class Pengarang extends CI_Controller{
         $data['title']="Tambah Data pengarang";
         $this->_set_rules();	
         if($this->form_validation->run()==true){
-			//$data['list_keterangan'] = $list_keterangan;
-            if($cek->num_rows()>0){
-                $data['message']="<div class='alert alert-warning'>id_pengarang sudah digunakan</div>";
-                $this->template->display('pengarang/tambah',$data);
-            }else{
-                //setting konfiguras upload image
-                $config['upload_path'] = './assets/img/pengarang/';
-				$config['allowed_types'] = 'gif|jpg|png';
-				$config['max_size']	= '1000';
-				$config['max_width']  = '2000';
-				$config['max_height']  = '1024';
-                
-                $this->upload->initialize($config);
-                if(!$this->upload->do_upload('gambar')){
-                    $gambar="";
-                }else{
-                    $gambar=$this->upload->file_name;
-                }
-                
-                $info=array(
-                    'nama_pengarang'=>$this->input->post('nama_pengarang'),
-                    'keterangan'=>$this->input->post('keterangan'),
-                    'image'=>$gambar
-                );
-                $this->m_pengarang->simpan($info);
-                redirect('pengarang/index/add_success');
-            }
+			//setting konfiguras upload image
+			$config['upload_path'] = './assets/img/pengarang/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1000';
+			$config['max_width']  = '2000';
+			$config['max_height']  = '1024';
+			
+			$this->upload->initialize($config);
+			if(!$this->upload->do_upload('gambar')){
+				$gambar="";
+			}else{
+				$gambar=$this->upload->file_name;
+			}
+			
+			$info=array(
+				'nama_pengarang'=>$this->input->post('nama_pengarang'),
+				'keterangan'=>$this->input->post('keterangan'),
+				'image'=>$gambar
+			);
+			$this->m_pengarang->simpan($info);
+			redirect('pengarang/index/add_success');
         }else{
             $data['message']="";
             $this->template->display('pengarang/tambah',$data);

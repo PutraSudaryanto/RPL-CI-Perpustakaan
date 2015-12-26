@@ -69,18 +69,12 @@ class klasifikasi extends CI_Controller{
         $data['title']="Tambah Data klasifikasi";
         $this->_set_rules();	
         if($this->form_validation->run()==true){
-			//$data['list_keterangan'] = $list_keterangan;
-            if($cek->num_rows()>0){
-                $data['message']="<div class='alert alert-warning'>id_klasifikasi sudah digunakan</div>";
-                $this->template->display('klasifikasi/tambah',$data);
-            }else{
-                $info=array(
-					'jenis_klasifikasi'=>$this->input->post('jenis_klasifikasi'),
-                    'keterangan'=>$this->input->post('keterangan'),
-                );
-                $this->m_klasifikasi->simpan($info);
-                redirect('klasifikasi/index/add_success');
-            }
+			$info=array(
+				'jenis_klasifikasi'=>$this->input->post('jenis_klasifikasi'),
+				'keterangan'=>$this->input->post('keterangan'),
+			);
+			$this->m_klasifikasi->simpan($info);
+			redirect('klasifikasi/index/add_success');
         }else{
             $data['message']="";
             $this->template->display('klasifikasi/tambah',$data);

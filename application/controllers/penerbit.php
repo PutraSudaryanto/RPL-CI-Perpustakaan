@@ -70,19 +70,13 @@ class Penerbit extends CI_Controller{
         $data['title']="Tambah Data penerbit";
         $this->_set_rules();	
         if($this->form_validation->run()==true){
-			//$data['list_keterangan'] = $list_keterangan;
-            if($cek->num_rows()>0){
-                $data['message']="<div class='alert alert-warning'>id_penerbit sudah digunakan</div>";
-                $this->template->display('penerbit/tambah',$data);
-            }else{
-                $info=array(
-                    'penerbit'=>$this->input->post('penerbit'),
-					'alamat_penerbit'=>$this->input->post('alamat_penerbit'),
-                    'keterangan'=>$this->input->post('keterangan'),
-                );
-                $this->m_penerbit->simpan($info);
-                redirect('penerbit/index/add_success');
-            }
+			$info=array(
+				'penerbit'=>$this->input->post('penerbit'),
+				'alamat_penerbit'=>$this->input->post('alamat_penerbit'),
+				'keterangan'=>$this->input->post('keterangan'),
+			);
+			$this->m_penerbit->simpan($info);
+			redirect('penerbit/index/add_success');
         }else{
             $data['message']="";
             $this->template->display('penerbit/tambah',$data);

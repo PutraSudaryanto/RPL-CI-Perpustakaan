@@ -55,55 +55,48 @@ class Buku extends CI_Controller{
 		$data['combo_pengarang'] = $this->m_pengarang->combo_data(array("-- Pilih Pengarang --"));
 		$data['combo_penerbit'] = $this->m_penerbit->combo_data(array("-- Pilih Penerbit --"));
 		$data['combo_klasifikasi'] = $this->m_klasifikasi->combo_data(array("-- Pilih klasisfikasi --"));
-
 		
         if($this->form_validation->run()== true){//jika validasi dijalankan dan benar
-            if($cek->num_rows()>0){ // jika kode sudah ada, maka tampilkan pesan
-                $data['message']="<div class='alert alert-danger'>Kode Buku sudah ada</div>";
-                $this->template->display('buku/tambah',$data);
-            }else{ // jika kode buku belum ada, maka simpan
-				$data['form_action'] = 'buku/tambah';
-				if(isset($_POST['Model'])) {
-				
-					//setting konfiguras upload image
-					$config['upload_path'] = './assets/img/';
-					$config['allowed_types'] = 'gif|jpg|png';
-					$config['max_size']	= '1000';
-					$config['max_width']  = '2000';
-					$config['max_height']  = '1024';
-					
-					$this->load->library('upload');
-					$this->upload->initialize($config);
-					
-					if(!$this->upload->do_upload('gambar')){
-						$gambar="";
-					}else{
-						//$gambar=$this->upload->file_name;
-						$data = $this->upload->data();
-						
-						$gambar = $data['file_name'];
-					}
-					
-					$info = $_POST['Model'];
-					$info['image'] = $gambar;
-					if($this->m_buku->simpan($info)) {				
-						 redirect('buku/index/add_success');				
-					}
-				}
+			$data['form_action'] = 'buku/tambah';
+			if(isset($_POST['Model'])) {
 			
-	
-                /*$info=array(
-                    'kode_buku'=>$this->input->post('kode'),
-                    'judul'=>$this->input->post('judul'),
-                    'pengarang'=>$anggota,
-					 'penerbit'=>$data,
-                    'klasifikasi'=>$this->input->post('klasifikasi'),
-                    'image'=>$gambar
-                );*/
-				//$this->m_buku->simpan($info);
-                redirect('buku/index/add_success');
-
-            }
+				//setting konfiguras upload image
+				$config['upload_path'] = './assets/img/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size']	= '1000';
+				$config['max_width']  = '2000';
+				$config['max_height']  = '1024';
+				
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				
+				if(!$this->upload->do_upload('gambar')){
+					$gambar="";
+				}else{
+					//$gambar=$this->upload->file_name;
+					$data = $this->upload->data();
+					
+					$gambar = $data['file_name'];
+				}
+				
+				$info = $_POST['Model'];
+				$info['image'] = $gambar;
+				if($this->m_buku->simpan($info)) {				
+					 redirect('buku/index/add_success');				
+				}
+			}
+			
+			/*$info=array(
+				'kode_buku'=>$this->input->post('kode'),
+				'judul'=>$this->input->post('judul'),
+				'pengarang'=>$anggota,
+				 'penerbit'=>$data,
+				'klasifikasi'=>$this->input->post('klasifikasi'),
+				'image'=>$gambar
+			);*/
+			//$this->m_buku->simpan($info);
+			redirect('buku/index/add_success');
+				
         }else{
             $data['message']="";
         }
