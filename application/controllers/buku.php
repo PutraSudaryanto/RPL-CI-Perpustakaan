@@ -58,8 +58,6 @@ class Buku extends CI_Controller{
 
 		
         if($this->form_validation->run()== true){//jika validasi dijalankan dan benar
-            $kode=$this->input->post('kode'); // mendapatkan input dari kode$data['combo_penerbit'] = $this->m_penerbit->combo_data(array("-- Pilih Penerbit --"));
-            $cek=$this->m_buku->cek($kode); // cek kode di database
             if($cek->num_rows()>0){ // jika kode sudah ada, maka tampilkan pesan
                 $data['message']="<div class='alert alert-danger'>Kode Buku sudah ada</div>";
                 $this->template->display('buku/tambah',$data);
