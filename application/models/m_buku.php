@@ -36,7 +36,7 @@ class M_buku extends CI_Model{
         return $this->db->insert_id();
     }
     
-    function update($kode,$info){
+    function update($kode,$info=null){
 		if(!empty($info)) {
 			foreach($info as $key => $val)
 				$data[$key] = $val;
